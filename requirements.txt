@@ -1,0 +1,10 @@
+The package requirements for this Python program are as follows:
+
+- requests
+- bs4 (BeautifulSoup)
+- re
+- numpy
+- streamlit
+- textblob
+- scikit-learn
+- matplotlib
