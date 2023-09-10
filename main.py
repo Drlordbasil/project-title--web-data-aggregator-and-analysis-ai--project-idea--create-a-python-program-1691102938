@@ -47,7 +47,8 @@ class WebScraper:
             return 'Neutral'
 
     def extract_topics(self, data):
-        vectorizer = CountVectorizer(max_df=0.95, min_df=2, stop_words='english')
+        vectorizer = CountVectorizer(
+            max_df=0.95, min_df=2, stop_words='english')
         dtm = vectorizer.fit_transform(data)
 
         lda_model = LatentDirichletAllocation(n_components=5, random_state=42)
@@ -55,7 +56,8 @@ class WebScraper:
 
         topics = []
         for topic_idx, topic in enumerate(lda_model.components_):
-            top_words = [vectorizer.get_feature_names()[i] for i in topic.argsort()[:-6:-1]]
+            top_words = [vectorizer.get_feature_names()[i]
+                         for i in topic.argsort()[:-6:-1]]
             topics.append(f"Topic {topic_idx + 1}: {' '.join(top_words)}")
         return topics
 
@@ -83,7 +85,8 @@ class WebScraper:
                 topics = self.extract_topics(normalized_data)
                 self.visualize_data(topics)
 
-        st.info('Use this program to scrape and analyze data from various online sources.')
+        st.info(
+            'Use this program to scrape and analyze data from various online sources.')
 
 
 def main():
