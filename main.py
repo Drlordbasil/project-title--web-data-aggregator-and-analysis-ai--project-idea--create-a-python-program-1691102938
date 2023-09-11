@@ -1,12 +1,11 @@
 import requests
 from bs4 import BeautifulSoup
 import re
-import numpy as np
-import streamlit as st
 from textblob import TextBlob
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.decomposition import LatentDirichletAllocation
 import matplotlib.pyplot as plt
+import streamlit as st
 
 
 class WebScraper:
@@ -28,7 +27,7 @@ class WebScraper:
         return unique_data
 
     def handle_missing_values(self, data):
-        filled_data = [d for d in data if d]
+        filled_data = list(filter(None, data))
         return filled_data
 
     def normalize_data(self, data):
@@ -62,7 +61,7 @@ class WebScraper:
         return topics
 
     def visualize_data(self, topics):
-        x = np.arange(len(topics))
+        x = range(len(topics))
         y = np.random.randint(0, 100, len(topics))
         plt.bar(x, y)
         plt.xlabel('Topics')
